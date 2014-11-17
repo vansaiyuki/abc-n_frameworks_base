@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.internal.util.pure;
+package com.android.internal.util.abc;
 
 import android.content.Context;
 import android.content.Intent;

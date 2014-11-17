@@ -35,4 +35,7 @@
 
     <!-- Screen Recording -->
   <java-symbol type="bool" name="config_enableRegionScreenshotChord" />
+
+    <!-- LED pulse -->
+  <java-symbol type="bool" name="config_ledCanPulse" />
 </resources>
