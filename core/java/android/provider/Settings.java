@@ -4015,6 +4015,12 @@ public final class Settings {
         public static final String QS_ROWS_LANDSCAPE = "qs_rows_landscape";
 
         /**
+         * Boolean value whether to link ringtone and notification volume
+         * @hide
+         */
+        public static final String VOLUME_LINK_NOTIFICATION = "volume_link_notification";
+
+        /**
          * Number of columns used for the Quick Settings (landscape)
          *
          * @hide
