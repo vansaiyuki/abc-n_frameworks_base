@@ -31,4 +31,7 @@
     <!-- The list of components which should be forced to be enabled. -->
     <string-array name="config_forceEnabledComponents" translatable="false">
     </string-array>
+
+    <!-- If this is true, key chords can be used to take a region screenshot on the device. -->
+    <bool name="config_enableRegionScreenshotChord">true</bool>
 </resources>
