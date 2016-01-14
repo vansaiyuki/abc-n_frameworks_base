@@ -3763,6 +3763,12 @@ public final class Settings {
         public static final String DOZE_SCREEN_BRIGHTNESS = "doze_screen_brightness";
 
         /**
+         * whether to enable or disable vibration on succesful fingerprint auth
+         * @hide
+         */
+        public static final String FINGERPRINT_SUCCESS_VIB = "fingerprint_success_vib";
+
+        /**
          * Enable double tap gesture anywhere on the lock screen put device to sleep
          * @hide
          */
