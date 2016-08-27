@@ -7002,6 +7002,12 @@ public final class Settings {
         public static final String DOZE_NOTIFICATION_INVERT_ENABLED = "doze_notification_invert_enabled";
 
         /**
+         * Whether the device should tint notification title.
+         * @hide
+         */
+        public static final String NOTIFICATION_TITLE_TINT = "notification_title_tint";
+
+        /**
          * This are the settings to be backed up.
          *
          * NOTE: Settings are backed up and restored in the order they appear
