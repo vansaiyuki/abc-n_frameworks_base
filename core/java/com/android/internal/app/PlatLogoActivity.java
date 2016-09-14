@@ -53,8 +53,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 public class PlatLogoActivity extends Activity {
-    public static final boolean REVEAL_THE_NAME = false;
-    public static final boolean FINISH = false;
+    public static final boolean REVEAL_THE_NAME = true;
 
     FrameLayout mLayout;
     int mTapCount;
@@ -113,6 +112,7 @@ public class PlatLogoActivity extends Activity {
                             ObjectAnimator.ofInt(overlay, "alpha", 0, 255)
                                 .setDuration(500)
                                 .start();
+                            return true;
                         }
 
                         final ContentResolver cr = getContentResolver();
@@ -139,7 +139,7 @@ public class PlatLogoActivity extends Activity {
                                 } catch (ActivityNotFoundException ex) {
                                     Log.e("PlatLogoActivity", "No more eggs.");
                                 }
-                                if (FINISH) finish();
+                                finish();
                             }
                         });
                         return true;
