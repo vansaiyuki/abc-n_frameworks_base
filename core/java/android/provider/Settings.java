@@ -3686,6 +3686,15 @@ public final class Settings {
         public static final String STATUS_BAR_CLOCK = "status_bar_clock";
 
         /**
+         * Display seconds next to clock in status bar
+         * 0: don't show the clock seconds
+         * 1: show the clock seconds
+         * default: 0
+         * @hide
+         */
+        public static final String STATUS_BAR_CLOCK_SECONDS = "status_bar_clock_seconds";
+
+        /**
          * Display style of AM/PM next to clock in status bar
          * 0: Normal display (Eclair stock)
          * 1: Small display (Froyo stock)
@@ -3798,6 +3807,7 @@ public final class Settings {
             NOTIFICATION_SOUND,
             ACCELEROMETER_ROTATION,
             STATUS_BAR_CLOCK,
+            STATUS_BAR_CLOCK_SECONDS,
             STATUS_BAR_AM_PM,
             STATUS_BAR_CLOCK_DATE_DISPLAY,
             STATUS_BAR_CLOCK_DATE_STYLE,

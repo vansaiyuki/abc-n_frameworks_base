@@ -1,7 +1,5 @@
 package com.android.systemui.statusbar.phone;
 
-import com.android.systemui.FontSizeUtils;
-
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.ContentObserver;
@@ -11,6 +9,8 @@ import android.os.Handler;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.view.View;
+
+import com.android.systemui.FontSizeUtils;
 import com.android.systemui.R;
 import com.android.systemui.statusbar.policy.Clock;
 
@@ -24,19 +24,18 @@ public class ClockController {
     public static final int STYLE_CLOCK_CENTER  = 2;
     public static final int STYLE_CLOCK_LEFT    = 3;
 
-    public static final int DEFAULT_ICON_TINT = Color.WHITE;
-
-    private final IconMerger mNotificationIcons;
+    private final NotificationIconAreaController mNotificationIconAreaController;
     private final Context mContext;
     private final SettingsObserver mSettingsObserver;
     private Clock mRightClock, mCenterClock, mLeftClock, mActiveClock;
 
-    private int mClockLocation;
     private int mAmPmStyle;
+    private int mClockLocation;
+    private boolean mShowSeconds;
     private int mClockDateStyle;
     private int mClockDateDisplay;
-    private int mIconTint = DEFAULT_ICON_TINT;
-    private final Rect mTintArea = new Rect();
+
+    private int mIconTint = Color.WHITE;
 
     class SettingsObserver extends ContentObserver {
         SettingsObserver(Handler handler) {
@@ -50,6 +49,9 @@ public class ClockController {
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_CLOCK),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_CLOCK_SECONDS),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_CLOCK_DATE_DISPLAY),
@@ -73,11 +75,12 @@ public class ClockController {
         }
     }
 
-    public ClockController(View statusBar, IconMerger notificationIcons, Handler handler) {
+    public ClockController(View statusBar,
+            NotificationIconAreaController notificationIconAreaController, Handler handler) {
         mRightClock = (Clock) statusBar.findViewById(R.id.clock);
         mCenterClock = (Clock) statusBar.findViewById(R.id.center_clock);
         mLeftClock = (Clock) statusBar.findViewById(R.id.left_clock);
-        mNotificationIcons = notificationIcons;
+        mNotificationIconAreaController = notificationIconAreaController;
         mContext = statusBar.getContext();
 
         mActiveClock = mRightClock;
@@ -112,6 +115,7 @@ public class ClockController {
         mActiveClock = getClockForCurrentLocation();
         mActiveClock.setVisibility(View.VISIBLE);
         mActiveClock.setAmPmStyle(mAmPmStyle);
+        mActiveClock.setShowSeconds(mShowSeconds);
         mActiveClock.setClockDateDisplay(mClockDateDisplay);
         mActiveClock.setClockDateStyle(mClockDateStyle);
 
@@ -128,6 +132,9 @@ public class ClockController {
         mClockLocation = Settings.System.getIntForUser(resolver,
                 Settings.System.STATUS_BAR_CLOCK, STYLE_CLOCK_RIGHT,
                 UserHandle.USER_CURRENT);
+        mShowSeconds = Settings.System.getIntForUser(resolver,
+                Settings.System.STATUS_BAR_CLOCK_SECONDS, 0,
+                UserHandle.USER_CURRENT) == 1;
         mClockDateDisplay = Settings.System.getIntForUser(resolver,
                 Settings.System.STATUS_BAR_CLOCK_DATE_DISPLAY, Clock.CLOCK_DATE_DISPLAY_GONE,
                 UserHandle.USER_CURRENT);
@@ -138,8 +145,8 @@ public class ClockController {
     }
 
     private void setClockAndDateStatus() {
-        if (mNotificationIcons != null) {
-            mNotificationIcons.setClockAndDateStatus(mClockLocation);
+        if (mNotificationIconAreaController != null) {
+            mNotificationIconAreaController.setClockAndDateStatus(mClockLocation);
         }
     }
 
@@ -149,37 +156,28 @@ public class ClockController {
         }
     }
 
-    public void setTintArea(Rect tintArea) {
-        if (tintArea == null) {
-            mTintArea.setEmpty();
-        } else {
-            mTintArea.set(tintArea);
-        }
-        applyClockTint();
-    }
-
     public void setTextColor(int iconTint) {
         mIconTint = iconTint;
         if (mActiveClock != null) {
             mActiveClock.setTextColor(iconTint);
         }
-        applyClockTint();
+    }
+
+    public void setTextColor(Rect tintArea, int iconTint) {
+        if (mActiveClock != null) {
+            setTextColor(StatusBarIconController.getTint(tintArea, mActiveClock, iconTint));
+        }
     }
 
     public void updateFontSize() {
         if (mActiveClock != null) {
             FontSizeUtils.updateFontSize(mActiveClock, R.dimen.status_bar_clock_size);
-            mActiveClock.setPaddingRelative(
-                    mContext.getResources().getDimensionPixelSize(
-                            R.dimen.status_bar_clock_starting_padding),
-                    0,
-                    mContext.getResources().getDimensionPixelSize(
-                        R.dimen.status_bar_clock_end_padding),
-                    0);
         }
     }
 
-    private void applyClockTint() {
-        StatusBarIconController.getTint(mTintArea, mActiveClock, mIconTint);
+    public void setPaddingRelative(int start, int top, int end, int bottom) {
+        if (mActiveClock != null) {
+            mActiveClock.setPaddingRelative(start, top, end, bottom);
+        }
     }
 }
