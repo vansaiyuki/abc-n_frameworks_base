@@ -53,6 +53,7 @@ import com.android.systemui.qs.tiles.FlashlightTile;
 import com.android.systemui.qs.tiles.HotspotTile;
 import com.android.systemui.qs.tiles.IntentTile;
 import com.android.systemui.qs.tiles.LocationTile;
+import com.android.systemui.qs.tiles.NavbarTile;
 import com.android.systemui.qs.tiles.NfcTile;
 import com.android.systemui.qs.tiles.RebootTile;
 import com.android.systemui.qs.tiles.RotationLockTile;
@@ -441,6 +442,7 @@ public class QSTileHost implements QSTile.Host, Tunable {
         else if (tileSpec.equals("saver")) return new DataSaverTile(this);
         else if (tileSpec.equals("caffeine")) return new CaffeineTile(this);
         else if (tileSpec.equals("screenshot")) return new ScreenshotTile(this);
+        else if (tileSpec.equals("navbar")) return new NavbarTile(this);
         else if (tileSpec.equals("reboot")) return new RebootTile(this);
         else if (tileSpec.equals("sound")) return new SoundTile(this);
         else if (tileSpec.equals("volume")) return new VolumeTile(this);
