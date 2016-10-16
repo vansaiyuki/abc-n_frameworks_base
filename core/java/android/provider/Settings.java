@@ -6737,13 +6737,6 @@ public final class Settings {
         public static final String QS_TILES = "sysui_qs_tiles";
 
         /**
-         * Add or remove software navigation bar
-         *
-         * @hide
-         */
-        public static final String NAVIGATION_BAR_VISIBLE = "navigation_bar_visible";
-
-        /**
          * Count of small QS tiles.
          * @hide
          */

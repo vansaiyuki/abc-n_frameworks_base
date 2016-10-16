@@ -1297,11 +1297,6 @@ public interface WindowManagerPolicy {
     public boolean hasNavigationBar();
 
     /**
-     * Device requires a software navigation bar.
-     */
-    public boolean needsNavigationBar();
-
-    /**
      * Lock the device now.
      */
     public void lockNow(Bundle options);
