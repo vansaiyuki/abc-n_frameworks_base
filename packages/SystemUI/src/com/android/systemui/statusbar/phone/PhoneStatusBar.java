@@ -1386,10 +1386,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     UserHandle.USER_CURRENT) == 1;
 
         if (doShowNavbar) {
-            if (!mNavigationBarAttached) {
-                mNavigationBarAttached = true;
-                mWindowManager.addView(mNavigationBarView, getNavigationBarLayoutParams());
-            }
             addNavigationBar();
         } else {
             if (mNavigationBarAttached) {
@@ -2813,7 +2809,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mNotificationPanel.closeQs();
 
         mExpandedVisible = false;
-        if (mNavigationBarView != null && mNavigationBarAttached)
+        if (mNavigationBarView != null)
             mNavigationBarView.setSlippery(false);
         visibilityChanged(false);
 
@@ -3183,9 +3179,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         } else {
             flags &= ~NAVIGATION_HINT_IME_SHOWN;
         }
-        if (mNavigationBarView != null && mNavigationBarAttached) {
-            setNavigationIconHints(flags);
-        }
+
+        setNavigationIconHints(flags);
     }
 
     public static String viewInfo(View v) {
