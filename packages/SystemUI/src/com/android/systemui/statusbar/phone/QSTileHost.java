@@ -447,8 +447,7 @@ public class QSTileHost implements QSTile.Host, Tunable {
         else if (tileSpec.equals("volume")) return new VolumeTile(this);
         else if (tileSpec.equals("nfc")) return new NfcTile(this);
         else if (tileSpec.equals("adb_network")) return new AdbOverNetworkTile(this);
-        else if (tileSpec.equals(NightModeTile.NIGHT_MODE_SPEC))
-            return new NightModeTile(this);
+        else if (tileSpec.equals("night")) return new NightModeTile(this);
         else if (tileSpec.equals("navigation_bar")) return new NavigationBarTile(this);
         // Intent tiles.
         else if (tileSpec.startsWith(IntentTile.PREFIX)) return IntentTile.create(this,tileSpec);
