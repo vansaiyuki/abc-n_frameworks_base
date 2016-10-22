@@ -514,10 +514,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QS_COLUMNS_LANDSCAPE),
                     false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.Secure.getUriFor(
-                    Settings.Secure.LOCK_QS_DISABLED),
-                    false, this, UserHandle.USER_ALL);
-            update();
         }
 
         @Override
@@ -532,14 +528,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 || uri.equals(Settings.System.getUriFor(
                     Settings.System.QS_COLUMNS_LANDSCAPE))) {
                 updateQSRowsColumnsLandscape();
-            }
-            update();
-        }
-
-        @Override
-        public void update() {
-            if (mNotificationPanel != null) {
-                mNotificationPanel .updateSettings();
             }
         }
     }
