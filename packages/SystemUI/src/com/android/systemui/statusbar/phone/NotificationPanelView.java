@@ -1067,7 +1067,6 @@ public class NotificationPanelView extends PanelView implements
         mStatusBarState = statusBarState;
         mKeyguardShowing = keyguardShowing;
         mQsContainer.setKeyguardShowing(mKeyguardShowing);
-        mQsContainer.setSecureExpandDisabled(isQsSecureExpandDisabled());
 
         if (goingToFullShade || (oldState == StatusBarState.KEYGUARD
                 && statusBarState == StatusBarState.SHADE_LOCKED)) {
