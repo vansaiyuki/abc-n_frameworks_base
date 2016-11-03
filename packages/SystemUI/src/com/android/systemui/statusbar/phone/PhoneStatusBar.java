@@ -502,18 +502,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         void observe() {
             ContentResolver resolver = mContext.getContentResolver();
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.QS_ROWS_PORTRAIT),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.QS_COLUMNS_PORTRAIT),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.QS_ROWS_LANDSCAPE),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.QS_COLUMNS_LANDSCAPE),
-                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.Secure.getUriFor(
                     Settings.Secure.LOCK_QS_DISABLED),
                     false, this, UserHandle.USER_ALL);
@@ -521,17 +509,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         @Override
         public void onChange(boolean selfChange, Uri uri) {
-            if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.QS_ROWS_PORTRAIT))
-                || uri.equals(Settings.System.getUriFor(
-                    Settings.System.QS_COLUMNS_PORTRAIT))) {
-                updateQSRowsColumnsPortrait();
-            } else if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.QS_ROWS_LANDSCAPE))
-                || uri.equals(Settings.System.getUriFor(
-                    Settings.System.QS_COLUMNS_LANDSCAPE))) {
-                updateQSRowsColumnsLandscape();
-            } else if (uri.equals(Settings.Secure.getUriFor(
+            if (uri.equals(Settings.Secure.getUriFor(
                     Settings.Secure.LOCK_QS_DISABLED))) {
                 updateQSLock();
             }
@@ -2315,20 +2293,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     }
                 }
             }
-        }
-    }
-
-    private void updateQSRowsColumnsPortrait() {
-        Resources res = mContext.getResources();
-        if (res.getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            updateResources();
-        }
-    }
-
-    private void updateQSRowsColumnsLandscape() {
-        Resources res = mContext.getResources();
-        if (res.getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            updateResources();
         }
     }
 
