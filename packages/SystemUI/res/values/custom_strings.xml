@@ -81,4 +81,7 @@
     <!-- Android Auto 2.0x QS tile -->
     <string name="quick_settings_androidauto_label">Android Auto</string>
 
+    <string name="screenshot_abort_title">No screenshot taken.</string>
+    <string name="screenshot_abort_text">Operation aborted.</string>
+
 </resources>
