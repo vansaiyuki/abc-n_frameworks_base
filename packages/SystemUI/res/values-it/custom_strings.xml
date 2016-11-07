@@ -20,8 +20,11 @@
     <string name="accessibility_quick_settings_caffeine_off">Caffeina off</string>
     <string name="accessibility_quick_settings_caffeine_on">Caffeina on</string>
     <string name="quick_settings_reboot_label">Riavvio</string>
-     <string name="quick_settings_sound_label">Suono</string>
-     <string name="quick_settings_sound_ring">Suoneria</string>
-     <string name="quick_settings_sound_vibrate">Vibrazione</string>
-     <string name="quick_settings_sound_dnd">Non disturbare</string>
+    <string name="quick_settings_sound_label">Suono</string>
+    <string name="quick_settings_sound_ring">Suoneria</string>
+    <string name="quick_settings_sound_vibrate">Vibrazione</string>
+    <string name="quick_settings_sound_dnd">Non disturbare</string>
+
+    <string name="screenshot_abort_title">Nessuno screenshot catturato.</string>
+    <string name="screenshot_abort_text">Operazione annullata.</string>
 </resources>
