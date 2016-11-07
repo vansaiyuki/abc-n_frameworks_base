@@ -75,4 +75,7 @@
     <string name="qs_menu_item_columns_seven">7</string>
     <string name="qs_menu_item_reset">Reset</string>
 
+    <string name="screenshot_abort_title">No screenshot taken.</string>
+    <string name="screenshot_abort_text">Operation aborted.</string>
+
 </resources>
