@@ -36,11 +36,10 @@ import com.android.systemui.screenshot.TakeScreenshotService;
 import com.android.systemui.qs.QSTile;
 import com.android.internal.logging.MetricsProto.MetricsEvent;
 
-import static android.view.WindowManager.TAKE_SCREENSHOT_FULLSCREEN;
-import static android.view.WindowManager.TAKE_SCREENSHOT_SELECTED_REGION;
-
 /** Quick settings tile: Screenshot **/
 public class ScreenshotTile extends QSTile<QSTile.BooleanState> {
+
+    private boolean mRegion = false;
 
     private boolean mListening;
     private final Object mScreenshotLock = new Object();
@@ -70,15 +69,8 @@ public class ScreenshotTile extends QSTile<QSTile.BooleanState> {
 
     @Override
     public void handleClick() {
-        mHost.collapsePanels();
-        checkSettings();
-        /* wait for the panel to close */
-        try {
-             Thread.sleep(mScreenshotDelay);
-        } catch (InterruptedException ie) {
-             // Do nothing
-        }
-        takeScreenshot(1); //fullscreen screenshot
+        mRegion = !mRegion;
+        refreshState();
     }
 
     @Override
@@ -91,7 +83,7 @@ public class ScreenshotTile extends QSTile<QSTile.BooleanState> {
         } catch (InterruptedException ie) {
              // Do nothing
         }
-        takeScreenshot(2); //region screenshot
+        takeScreenshot(mRegion ? 2 : 1); //region screenshot
     }
 
     @Override
@@ -106,10 +98,17 @@ public class ScreenshotTile extends QSTile<QSTile.BooleanState> {
 
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
-        state.label = mContext.getString(R.string.quick_settings_screenshot_label);
-        state.icon = ResourceIcon.get(R.drawable.ic_qs_screenshot);
-        state.contentDescription =  mContext.getString(
-                R.string.quick_settings_screenshot_label);
+        if (mRegion) {
+            state.label = mContext.getString(R.string.quick_settings_region_screenshot_label);
+            state.icon = ResourceIcon.get(R.drawable.ic_qs_screenshot);
+            state.contentDescription =  mContext.getString(
+                    R.string.quick_settings_region_screenshot_label);
+        } else {
+            state.label = mContext.getString(R.string.quick_settings_screenshot_label);
+            state.icon = ResourceIcon.get(R.drawable.ic_qs_screenshot);
+            state.contentDescription =  mContext.getString(
+                    R.string.quick_settings_screenshot_label);
+        }
     }
 
     final Runnable mScreenshotTimeout = new Runnable() {
