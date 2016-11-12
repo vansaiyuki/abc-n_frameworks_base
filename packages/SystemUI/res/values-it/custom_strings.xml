@@ -27,4 +27,5 @@
 
     <string name="screenshot_abort_title">Nessuno screenshot catturato</string>
     <string name="screenshot_abort_text">Operazione annullata</string>
+    <string name="quick_settings_region_screenshot_label">Screenshot parziale</string>
 </resources>
