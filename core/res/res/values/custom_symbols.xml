@@ -22,9 +22,6 @@
   <java-symbol type="integer" name="config_proximityCheckTimeout" />
   <!-- Vendor warning -->
   <java-symbol type="string" name="system_error_vendorprint" />
-  <!-- Notification icon/text dynamic tint -->
-  <java-symbol type="color" name="notification_text_default_color" />
-  <java-symbol type="color" name="sender_text_color" />
   <!-- Reboot - Advanced Reboot -->
   <java-symbol type="array" name="shutdown_reboot_options" />
   <java-symbol type="array" name="shutdown_reboot_actions" />

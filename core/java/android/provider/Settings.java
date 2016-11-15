@@ -6980,18 +6980,6 @@ public final class Settings {
         public static final String QS_TILES = "sysui_qs_tiles";
 
         /**
-         * Whether the device should color invert notifications when doze if enabled.
-         * @hide
-         */
-        public static final String DOZE_NOTIFICATION_INVERT_ENABLED = "doze_notification_invert_enabled";
-
-        /**
-         * Whether the device should tint notification title.
-         * @hide
-         */
-        public static final String NOTIFICATION_TITLE_TINT = "notification_title_tint";
-
-        /**
          * Count of small QS tiles.
          * @hide
          */
