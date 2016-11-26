@@ -146,11 +146,15 @@ public class BatteryMeterView extends ImageView implements
 
     private void updateBoltColor() {
         final int style = Settings.Secure.getInt(getContext().getContentResolver(), STATUS_BAR_BATTERY_STYLE, 0);
+        if (style == BatteryMeterDrawable.BATTERY_STYLE_TEXT || style == BatteryMeterDrawable.BATTERY_STYLE_HIDDEN) {
+            return;
+        } else {
         mDrawable = new BatteryMeterDrawable(mContext, new Handler(), mFrameColor, style);
         setImageDrawable(mDrawable);
         setVisibility(View.VISIBLE);
         restoreDrawableAttributes();
         requestLayout();
+        }
     }
 
     private void restoreDrawableAttributes() {
