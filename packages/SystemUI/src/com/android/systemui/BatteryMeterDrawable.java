@@ -171,7 +171,6 @@ public class BatteryMeterDrawable extends Drawable implements
         levels.recycle();
         colors.recycle();
         updateShowPercent();
-        updateChargeColor();
         updateForceChargeBatteryText();
         mWarningString = context.getString(R.string.battery_meter_very_low_overlay_symbol);
         mCriticalLevel = mContext.getResources().getInteger(
@@ -403,9 +402,13 @@ public class BatteryMeterDrawable extends Drawable implements
         mCurrentBackgroundColor = getBackgroundColor(darkIntensity);
         mCurrentFillColor = getFillColor(darkIntensity);
         mIconTint = mCurrentFillColor;
-        mChargeColor = mCurrentFillColor;
-        // Make bolt fully opaque for increased visibility
-        mBoltDrawable.setTint(0xff000000 | mCurrentFillColor);
+        if (darkIntensity == 0f) {
+            updateChargeColor();
+            mBoltDrawable.setTint(0xff000000 | mChargeColor);
+        } else {
+            mChargeColor = mCurrentFillColor;
+            mBoltDrawable.setTint(0xff000000 | mCurrentFillColor);
+        }
         mFrameDrawable.setTint(mCurrentBackgroundColor);
         updateBoltDrawableLayer(mBatteryDrawable, mBoltDrawable);
         invalidateSelf();
