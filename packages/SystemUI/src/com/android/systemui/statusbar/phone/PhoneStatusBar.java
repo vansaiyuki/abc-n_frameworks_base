@@ -504,20 +504,15 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QS_LAYOUT_COLUMNS),
                     false, this, UserHandle.USER_ALL);
-            updateQSLock();
-            updateQS();
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.QS_TILE_TITLE_VISIBILITY),
+                    false, this, UserHandle.USER_ALL);
+            updateAll();
         }
 
         @Override
         public void onChange(boolean selfChange, Uri uri) {
-            if (uri.equals(Settings.Secure.getUriFor(
-                    Settings.Secure.LOCK_QS_DISABLED))) {
-                updateQSLock();
-            }
-            if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.QS_LAYOUT_COLUMNS))) {
-                updateQS();
-            }
+            updateAll();
         }
     }
 
@@ -2297,13 +2292,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
     }
 
-    private void updateQSLock() {
+    private void updateAll() {
         if (mNotificationPanel != null) {
             mNotificationPanel.updateSettings();
         }
-    }
-
-    private void updateQS() {
         if (mHeader != null) {
             mHeader.updateSettings();
         }
