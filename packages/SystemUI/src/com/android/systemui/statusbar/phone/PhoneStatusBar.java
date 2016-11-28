@@ -479,20 +479,32 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mContext.getContentResolver().registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QS_LAYOUT_COLUMNS),
                     false, this, UserHandle.USER_ALL);
-            update();
+            mContext.getContentResolver().registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.QS_TILE_TITLE_VISIBILITY),
+                    false, this, UserHandle.USER_ALL);
+            updateAll();
         }
 
         @Override
         public void onChange(boolean selfChange) {
-            update();
+            updateAll();
         }
 
-        public void update() {
-            if (mHeader != null) {
-                mHeader.updateSettings();
-            }
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            updateAll();
         }
     }
+
+    private void updateAll() {
+        if (mNotificationPanel != null) {
+            mNotificationPanel.updateSettings();
+        }
+        if (mHeader != null) {
+            mHeader.updateSettings();
+        }
+    }
+
     private SettingsObserver mObserver = new SettingsObserver(mHandler);
 
     private int mInteractingWindows;
@@ -2371,9 +2383,18 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         Trace.endSection();
     }
 
+<<<<<<< HEAD
     private void updateReportRejectedTouchVisibility() {
         if (mReportRejectedTouch == null) {
             return;
+=======
+    private void updateAll() {
+        if (mNotificationPanel != null) {
+            mNotificationPanel.updateSettings();
+        }
+        if (mHeader != null) {
+            mHeader.updateSettings();
+>>>>>>> ae49c43... Allow disable QS tile titles visibility
         }
         mReportRejectedTouch.setVisibility(mState == StatusBarState.KEYGUARD
                 && mFalsingManager.isReportingEnabled() ? View.VISIBLE : View.INVISIBLE);
