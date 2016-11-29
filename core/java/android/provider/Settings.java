@@ -6870,6 +6870,16 @@ public final class Settings {
          public static final String FORCE_CHARGE_BATTERY_TEXT = "force_charge_battery_text";
 
         /**
+         * Charging symbol near battery text percentage
+         * 0: no symbol
+         * 1: flash symbol
+         * 2: tilde symbol
+         * default: 0
+         * @hide
+         */
+        public static final String TEXT_CHARGING_SYMBOL = "text_charging_symbol";
+
+        /**
          * Twilight mode always off.
          * @hide
          */
