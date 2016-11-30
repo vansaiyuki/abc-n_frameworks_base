@@ -73,6 +73,7 @@ public class BatteryMeterDrawable extends Drawable implements
     public static final int BATTERY_STYLE_HIDDEN    = 4;
     public static final int BATTERY_STYLE_LANDSCAPE = 5;
     public static final int BATTERY_STYLE_TEXT      = 6;
+    public static final int BATTERY_STYLE_BIGCIRCLE    = 7;
 
     private final int[] mColors;
     private final int mIntrinsicWidth;
@@ -362,7 +363,7 @@ public class BatteryMeterDrawable extends Drawable implements
                     return getBoltColor();
                 }
             } else {
-                if (mStyle == BATTERY_STYLE_CIRCLE && !mPluggedIn) {
+                if ((mStyle == BATTERY_STYLE_CIRCLE || mStyle == BATTERY_STYLE_BIGCIRCLE) && !mPluggedIn) {
                     return mColors[1];
                 } else if (!isChargeLevel) {
                     return getBoltColor();
@@ -532,6 +533,8 @@ public class BatteryMeterDrawable extends Drawable implements
                 return R.drawable.ic_battery_landscape;
             case BATTERY_STYLE_CIRCLE:
                 return R.drawable.ic_battery_circle;
+            case BATTERY_STYLE_BIGCIRCLE:
+                return R.drawable.ic_battery_bigcircle;
             case BATTERY_STYLE_PORTRAIT:
                 return R.drawable.ic_battery_portrait;
             default:
@@ -544,6 +547,7 @@ public class BatteryMeterDrawable extends Drawable implements
             case BATTERY_STYLE_LANDSCAPE:
                 return R.style.BatteryMeterViewDrawable_Landscape;
             case BATTERY_STYLE_CIRCLE:
+            case BATTERY_STYLE_BIGCIRCLE:
                 return R.style.BatteryMeterViewDrawable_Circle;
             case BATTERY_STYLE_PORTRAIT:
                 return R.style.BatteryMeterViewDrawable_Portrait;
@@ -554,9 +558,9 @@ public class BatteryMeterDrawable extends Drawable implements
 
     private int getBoltColor() {
         if (mBoltOverlay) {
-            return mContext.getResources().getColor(mStyle == BATTERY_STYLE_CIRCLE ? R.color.batterymeter_bolt_color : R.color.system_primary_color);
+            return mContext.getResources().getColor((mStyle == BATTERY_STYLE_CIRCLE || mStyle == BATTERY_STYLE_BIGCIRCLE) ? R.color.batterymeter_bolt_color : R.color.system_primary_color);
         }
-        if (mStyle == BATTERY_STYLE_CIRCLE) {
+        if (mStyle == BATTERY_STYLE_CIRCLE || mStyle == BATTERY_STYLE_BIGCIRCLE) {
             updateChargeColor();
             int chargeColor = mChargeColor;
             return chargeColor;
@@ -576,11 +580,14 @@ public class BatteryMeterDrawable extends Drawable implements
 
         final float textSize;
         switch(mStyle) {
-            case 2:
+            case BATTERY_STYLE_CIRCLE:
                 textSize = widthDiv2;
                 break;
-            case 5:
+            case BATTERY_STYLE_LANDSCAPE:
                 textSize = widthDiv2 * 1.3f;
+                break;
+            case BATTERY_STYLE_BIGCIRCLE:
+                textSize = widthDiv2 * 1.2f;
                 break;
             default:
                 textSize = widthDiv2;
