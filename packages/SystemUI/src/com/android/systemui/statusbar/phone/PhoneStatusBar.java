@@ -2390,18 +2390,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         Trace.endSection();
     }
 
-<<<<<<< HEAD
     private void updateReportRejectedTouchVisibility() {
         if (mReportRejectedTouch == null) {
             return;
-=======
-    private void updateAll() {
-        if (mNotificationPanel != null) {
-            mNotificationPanel.updateSettings();
-        }
-        if (mHeader != null) {
-            mHeader.updateSettings();
->>>>>>> ae49c43... Allow disable QS tile titles visibility
         }
         mReportRejectedTouch.setVisibility(mState == StatusBarState.KEYGUARD
                 && mFalsingManager.isReportingEnabled() ? View.VISIBLE : View.INVISIBLE);
