@@ -6560,22 +6560,16 @@ public final class Settings {
         public static final String WAKE_GESTURE_ENABLED = "wake_gesture_enabled";
 
         /**
-         * Enable single click to turn WiFi on or off.
+         * Whether to use one tap QS tile action to enable or disable mobile data, wifi, and bluetooth
          * @hide
          */
-        public static final String QS_WIFI_EASY_TOGGLE = "qs_wifi_easy_toggle";
+        public static final String QS_EASY_TOGGLE = "qs_easy_toggle";
 
         /**
          * Whether the device should doze if configured.
          * @hide
          */
         public static final String DOZE_ENABLED = "doze_enabled";
-
-        /**
-         * Enable single click to turn Bluetooth on or off.
-         * @hide
-         */
-        public static final String QS_BT_EASY_TOGGLE = "qs_bt_easy_toggle";
 
         /**
          * Low brightness level for the advanced night mode tile
@@ -7068,12 +7062,6 @@ public final class Settings {
          * @hide
          */
         public static final String QQS_COUNT = "sysui_qqs_count";
-
-        /**
-         * Whether to use one tap tile action to enable or disable data 
-         * @hide
-         */
-        public static final String QS_DATA_ADVANCED = "qs_data_advanced";
 
         /**
          * Whether to display the ADB notification.
