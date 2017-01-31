@@ -70,4 +70,6 @@
   <!-- Vendor warning -->
   <java-symbol type="string" name="system_error_vendorprint" />
 
+    <!-- Power menu dialog -->
+  <java-symbol type="style" name="Animation.PowermenuDialog" />
 </resources>
