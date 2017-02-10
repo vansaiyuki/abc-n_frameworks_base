@@ -72,4 +72,8 @@
 
     <!-- Power menu dialog -->
   <java-symbol type="style" name="Animation.PowermenuDialog" />
+
+  <!-- High Brightness Mode -->
+  <java-symbol type="bool" name="config_supportHighBrightness" />
+
 </resources>
