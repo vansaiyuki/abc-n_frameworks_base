@@ -32,7 +32,9 @@ LOCAL_STATIC_JAVA_LIBRARIES := \
     framework-protos \
     SystemUI-proto-tags \
     trail-drawing \
-    rebound
+    rebound \
+    android-support-v7-cardview \
+    android-opt-cards
 
 LOCAL_JAVA_LIBRARIES := telephony-common org.dirtyunicorns.utils
 
@@ -50,11 +52,14 @@ LOCAL_RESOURCE_DIR := \
     frameworks/support/v7/appcompat/res \
     frameworks/support/v7/recyclerview/res \
     frameworks/support/v17/leanback/res \
-    packages/apps/DUI/res
+    packages/apps/DUI/res \
+    frameworks/support/v7/cardview/res \
+    frameworks/opt/cards/res
 
 LOCAL_AAPT_FLAGS := --auto-add-overlay \
     --extra-packages com.android.keyguard:android.support.v7.recyclerview:android.support.v7.preference:android.support.v14.preference:android.support.v7.appcompat \
-    --extra-packages android.support.v17.leanback
+    --extra-packages android.support.v17.leanback:android.support.v7.cardview \
+    --extra-packages com.android.cards
 
 ifneq ($(SYSTEM_UI_INCREMENTAL_BUILDS),)
     LOCAL_PROGUARD_ENABLED := disabled
