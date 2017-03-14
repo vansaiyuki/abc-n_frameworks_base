@@ -564,7 +564,7 @@ public class BatteryMeterDrawable extends Drawable implements
                 textSize = widthDiv2 * 1.0f;
                 break;
 			case BATTERY_STYLE_SOLID:
-                textSize = widthDiv2 * 1.0f;
+                textSize = widthDiv2 * 0.8f;
 				break;
             case BATTERY_STYLE_BIGCIRCLE:
                 textSize = widthDiv2 * 1.2f;
