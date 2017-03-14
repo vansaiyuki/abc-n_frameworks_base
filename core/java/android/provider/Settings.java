@@ -3352,6 +3352,11 @@ public final class Settings {
                 "notification_light_screen_on_enable";
 
         /**
+		* @hide
+         */
+        public static final String OMNIJAWS_WEATHER_ICON_PACK = "omnijaws_weather_icon_pack";
+
+        /**
          * Whether the notification LED should repeatedly flash when a notification is
          * pending. The value is boolean (1 or 0).
          * @hide
